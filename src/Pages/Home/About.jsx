@@ -13,21 +13,21 @@ const About = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
           {/* card 1 */}
-          <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
-            <FaRegLightbulb className="text-4xl mb-4 text-yellow-400" />
+          <div className="p-6  bg-[#AEC4EB] shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+            <FaRegLightbulb className="text-4xl mb-4 text-yellow-300" />
             <h3 className="text-xl font-bold mb-2">Innovative Solution</h3>
             <p className="text-gray-600">
               Streamline your asset management with our cutting-edge tools.
             </p>
           </div>
-          <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+          <div className="p-6 bg-[#DACAE5] shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
             <FaUsers className="text-4xl text-teal-500 mb-4" />
             <h3 className="text-xl font-bold mb-2">Employee Focused</h3>
             <p className="text-gray-600">
               Designed to improve efficiency for both managers and employees.
             </p>
           </div>
-          <div className="p-6 bg-white shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+          <div className="p-6 bg-[#f6d5d6] shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
             <FaCheckCircle className="text-4xl text-green-500 mb-4" />
             <h3 className="text-xl font-bold mb-2">Reliable Service</h3>
             <p className="text-gray-600">
