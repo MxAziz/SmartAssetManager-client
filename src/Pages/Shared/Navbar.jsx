@@ -24,13 +24,10 @@ const Navbar = () => {
         <NavLink to={"/"}>HOME</NavLink>
       </li>
       <li>
-        <NavLink to={"/contact"}>CONTACT US</NavLink>
+        <NavLink to={"/contact"}>Join as Employee</NavLink>
       </li>
       <li>
-        <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/menu"}>OUR</NavLink>
+        <NavLink to={"/dashboard"}>Join as HR Manager</NavLink>
       </li>
       <li>
         <Link to={"/dashboard/cart"}>
@@ -42,16 +39,16 @@ const Navbar = () => {
       </li>
 
       {/* {user ? ( */}
-        <li>
-          <NavLink
-            className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
-            onClick={handleLogOut}
-          >
-            LOGOUT
-          </NavLink>
-        </li>
+      <li>
+        <NavLink
+          className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
+          onClick={handleLogOut}
+        >
+          LOGOUT
+        </NavLink>
+      </li>
       {/* ) : ( */}
-        {/* <li>
+      {/* <li>
           <NavLink
             className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
             to={"/login"}

@@ -12,6 +12,10 @@ const Packages = () => {
     <div className="bg-gray-100 py-10">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6 ">Packages</h2>
+        <p className="text-xl text-gray-700 mb-8">
+          Choose the right plan for your needs with our flexible, scalable
+          pricing options.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {packages.map((pkg) => (
             <div
@@ -23,7 +27,7 @@ const Packages = () => {
               <p className="text-gray-700">
                 <span className="text-2xl font-bold">${pkg.price}</span> / month
               </p>
-              <button className="btn btn-wide bg-[#724a93] text-white hover:bg-[#854276] mt-4">
+              <button className="btn btn-wide bg-[#4d2745] text-white hover:bg-[#854276] mt-4">
                 Get Started
               </button>
             </div>
