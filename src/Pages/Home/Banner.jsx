@@ -18,7 +18,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 w-full">
       <Slider {...settings} className="">
         {/* Slider 1 */}
         <div className="relative">

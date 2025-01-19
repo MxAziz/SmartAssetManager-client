@@ -30,12 +30,7 @@ const Navbar = () => {
         <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
       </li>
       <li>
-        <NavLink to={"/menu"}>OUR MENU</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/order"} className={"flex justify-center items-center"}>
-          <span>ORDER FOOD</span>
-        </NavLink>
+        <NavLink to={"/menu"}>OUR</NavLink>
       </li>
       <li>
         <Link to={"/dashboard/cart"}>
@@ -56,21 +51,21 @@ const Navbar = () => {
           </NavLink>
         </li>
       {/* ) : ( */}
-        <li>
+        {/* <li>
           <NavLink
             className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
             to={"/login"}
           >
             LOGIN
           </NavLink>
-        </li>
+        </li> */}
       {/* )} */}
     </>
   );
 
   return (
     <div>
-      <div className="navbar max-w-screen-xl mx-auto fixed z-30 bg-opacity-30 bg-black text-white ">
+      <div className="navbar  fixed z-30 bg-opacity-30 bg-black text-white ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -116,31 +111,6 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        {/* authentication condition */}
-        {/* <div className="navbar-end ">
-          {user ? (
-            <>
-              <div className="">
-                <a
-                  onClick={handleLogOut}
-                  className="px-4 py-2  border-2 border-black hover:bg-[#232425] hover:text-white text-lg font-bold rounded-md shadow-lg transition-all duration-300 "
-                >
-                  Log Out
-                </a>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="">
-                <NavLink to={"/login"}>
-                  <button className="px-4 py-2  border-2 border-black hover:bg-[#232425] hover:text-white text-lg font-bold rounded-md shadow-lg transition-all duration-300">
-                    Login
-                  </button>
-                </NavLink>
-              </div>
-            </>
-          )}
-        </div> */}
       </div>
     </div>
   );
