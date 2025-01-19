@@ -18,7 +18,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="bg-gray-100 w-full">
+    <div className="bg-gray-100 overflow-hidden">
       <Slider {...settings} className="">
         {/* Slider 1 */}
         <div className="relative">
@@ -31,7 +31,10 @@ const Banner = () => {
             <h2 className="text-4xl text-white font-bold mb-4">
               Join as HR Manager
             </h2>
-            <Link to="/join-hr" className="btn btn-primary">
+            <Link
+              to="/join-hr"
+              className="btn px-6 font-bold text-lg bg-[#4d2745] text-white hover:bg-transparent"
+            >
               Join Now
             </Link>
           </div>
@@ -48,7 +51,10 @@ const Banner = () => {
             <h2 className="text-4xl text-white font-bold mb-4">
               Join as Employee
             </h2>
-            <Link to="/join-employee" className="btn btn-secondary">
+            <Link
+              to="/join-employee"
+              className="btn px-6 font-bold text-lg bg-[#4d2745] text-white hover:bg-transparent"
+            >
               Join Now
             </Link>
           </div>
