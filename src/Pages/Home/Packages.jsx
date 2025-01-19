@@ -9,7 +9,7 @@ const Packages = () => {
   ];
 
   return (
-    <div className="bg-gray-100 py-10">
+    <div className="bg-gray-100 py-10 pb-20">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6 ">Packages</h2>
         <p className="text-xl text-gray-700 mb-8">

@@ -7,21 +7,21 @@ const Navbar = () => {
   // const { user, signOutUser } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogOut = () => {
-    signOutUser()
-      .then(() => {
-        navigate("/");
-        toast.success("Sign out successful");
-      })
-      .catch((error) => {
-        console.log("ERROR:", error);
-      });
-  };
+  // const handleLogOut = () => {
+  //   signOutUser()
+  //     .then(() => {
+  //       navigate("/");
+  //       toast.success("Sign out successful");
+  //     })
+  //     .catch((error) => {
+  //       console.log("ERROR:", error);
+  //     });
+  // };
   // navbar links
   const links = (
     <>
       <li>
-        <NavLink to={"/"}>HOME</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
         <NavLink to={"/contact"}>Join as Employee</NavLink>
@@ -30,33 +30,13 @@ const Navbar = () => {
         <NavLink to={"/dashboard"}>Join as HR Manager</NavLink>
       </li>
       <li>
-        <Link to={"/dashboard/cart"}>
-          <button className="btn btn-xs border-none bg-opacity-0 hover:text-black text-white">
-            {/* <FaCartArrowDown className="size-5" /> */}
-            {/* <div className="badge badge-secondary">+{cart.length}</div> */}
-          </button>
-        </Link>
-      </li>
-
-      {/* {user ? ( */}
-      <li>
         <NavLink
-          className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
-          onClick={handleLogOut}
+          className="btn btn-sm px-6 btn-outline text-white hover:bg-[#4d2745]"
+          to={"/login"}
         >
-          LOGOUT
+          Login
         </NavLink>
       </li>
-      {/* ) : ( */}
-      {/* <li>
-          <NavLink
-            className="btn btn-sm btn-outline text-white hover:bg-[#d4912d]"
-            to={"/login"}
-          >
-            LOGIN
-          </NavLink>
-        </li> */}
-      {/* )} */}
     </>
   );
 
@@ -83,12 +63,12 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 py-4 shadow"
+              className="menu menu-md dropdown-content bg-gray-900 px-6 py-8 space-y-3 rounded-box z-[1] mt-3 shadow"
             >
               <span className="font-bold">
                 <p className=" text-lg">SmartAssetManager</p>
               </span>
-              <div className="divider"></div>
+              <div className=" border-t"></div>
               {links}
             </ul>
           </div>
@@ -103,8 +83,8 @@ const Navbar = () => {
             </span>
           </a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-xs font-bold">
+        <div className="navbar-end hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-sm font-bold">
             {links}
           </ul>
         </div>
