@@ -16,7 +16,7 @@ const Packages = () => {
           Choose the right plan for your needs with our flexible, scalable
           pricing options.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {packages.map((pkg) => (
             <div
               key={pkg.id}

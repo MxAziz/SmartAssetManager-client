@@ -11,7 +11,7 @@ const About = () => {
           efficiently manage assets, monitor employee usage, and simplify
           operations.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {/* card 1 */}
           <div className="p-6  bg-[#AEC4EB] shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
             <FaRegLightbulb className="text-4xl mb-4 text-yellow-300" />

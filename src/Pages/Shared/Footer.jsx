@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Newsletter Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pb-10 border-b border-gray-700">
           <div>
-            <h3 className="text-2xl font-bold mb-4 pt-6">
+            <h3 className="text-2xl font-bold mb-4 pt-8">
               Subscribe to our Newsletter
             </h3>
             <p className="text-gray-400">
@@ -126,7 +126,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Section */}
-        <div className=" flex justify-between items-center  border-t border-gray-700 pt-8">
+        <div className=" md:flex justify-between items-center  border-t border-gray-700 pt-8">
           <p className="text-gray-200">
             Copyright © {new Date().getFullYear()} SmartAssetManager - All
             rights reserved
