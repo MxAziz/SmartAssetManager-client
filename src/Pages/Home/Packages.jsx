@@ -27,7 +27,7 @@ const Packages = () => {
               <p className="text-gray-700">
                 <span className="text-2xl font-bold">${pkg.price}</span> / month
               </p>
-              <button className="btn btn-wide bg-[#4d2745] text-white hover:bg-[#854276] mt-4">
+              <button className="btn btn-wide bg-[#633159] text-white hover:bg-[#854276] mt-4">
                 Get Started
               </button>
             </div>
