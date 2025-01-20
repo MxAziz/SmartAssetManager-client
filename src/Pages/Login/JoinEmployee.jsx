@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import useAuth from "./../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 const JoinEmployee = () => {
   const { signInWithGoogle, createUser } = useAuth();
 
   const [error, setError] = useState("");
 
-
+  // Regular expression:
+  const passwordReg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
 
   // Handle Form Submission
   const handleSubmit = async (e) => {
@@ -17,7 +19,48 @@ const JoinEmployee = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const birth = e.target.dob.value;
-    console.log(name, email, password, birth);
+    // console.log(name, email, password, birth);
+
+    // password validation
+    if (!passwordReg.test(password)) {
+      toast.error(
+        "Password Must have an Uppercase, a Lowercase, one digit and Length must be at least 6 characters"
+      );
+      return;
+    }
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+
+        // update user profile
+        const profile = {
+          name: name,
+          email: email,
+        };
+        updateUserProfile(name, photo)
+          .then(() => {
+            axiosPublic.post("/users", profile).then((res) => {
+              if (res.data.insertedId) {
+                e.target.reset();
+                console.log("user added to the database");
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+            });
+          })
+          .catch((error) => console.log("user profile update error", error));
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+
   };
 
   // google signIn method
