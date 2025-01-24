@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import auth from './../firebase/firebase.config';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
 export const AuthContext = createContext(null);
@@ -9,7 +10,8 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
     const signInWithGoogle = () => {
       setLoading(true);
@@ -27,7 +29,37 @@ const AuthProvider = ({children}) => {
     const signOutUser = () => {
       setLoading(true);
       return signOut(auth);
+  };
+
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
+
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        //    get token and store client side.
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          //    console.log(res);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        });
+      } else {
+        //  TODO: remove token(if token stored in the client side: local storage,  chasing, in memory)
+        localStorage.removeItem("access-token");
+      }
+      setLoading(false);
+    });
+    return () => {
+      unSubscribe();
     };
+  }, [axiosPublic]);
 
 
 
@@ -37,6 +69,7 @@ const AuthProvider = ({children}) => {
       createUser,
       signInUser,
       signOutUser,
+      updateUserProfile,
       signInWithGoogle,
     };
 
