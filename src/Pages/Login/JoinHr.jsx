@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { BiSolidUserAccount } from 'react-icons/bi';
 import { FcGoogle } from 'react-icons/fc';
 
 const JoinHr = () => {
@@ -13,53 +14,35 @@ const JoinHr = () => {
       name: form.name.value,
       photo: form.photo.value,
       email: form.email.value,
+      pass: form.password.value,
+      dob: form.dob.value,
+      package: selectedValue,
       companyName: form.companyName.value,
       companyLogo: form.companyLogo.value,
     };
+    console.table(formData);
   }
 
 
-  // google signIn method
-    const handleGoogleSignIn = () => {
-      signInWithGoogle()
-        .then((result) => {
-          console.log(result.user);
-          navigate("/");
-          toast.success("Sign up with Google is successful");
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
-    };
-
   return (
-    <div className="mt-[70px] mb-16 w-2/3 mx-auto flex ">
+    <div className="mt-[70px] mb-16 w-3/4 mx-auto flex ">
       <Helmet>
         <title>JoinHr - SmartAssetManager</title>
       </Helmet>
       {/* image */}
       <figure className="hidden lg:block">
         <img
-          className=" h-full w-[450px] shadow-2xl rounded-l-lg rounded-br-lg"
-          src="https://i.pinimg.com/736x/60/bc/1c/60bc1cd87b84b06905e2402d15c50c0b.jpg"
+          className=" h-full w-[490px] shadow-2xl rounded-l-lg rounded-br-lg"
+          src="https://i.pinimg.com/736x/4d/32/95/4d32957d2fc2d92c6893e2cfef3b7bf8.jpg"
+          // src="https://i.pinimg.com/736x/60/bc/1c/60bc1cd87b84b06905e2402d15c50c0b.jpg"
           alt=""
         />
       </figure>
       {/* login form */}
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-base-100 w-full max-w-md shrink-0 shadow-2xl">
         <form onSubmit={handleSubmit} className="card-body ">
           <div className="flex flex-col items-center">
-            <h3 className="text-xl mt-2">Get Your Free Account Now !</h3>
-            <button
-              // onClick={handleGoogleSignIn}
-              className="btn mt-3 w-full flex items-center justify-center gap-2 bg-white text-gray-800 border border-gray-400 rounded-lg px-4 py-2 "
-            >
-              <FcGoogle className="size-5" />
-              SignUp with Google
-            </button>
-          </div>
-          <div className="divider text-xs hover:underline">
-            Or Registration with Email
+            <h3 className="text-2xl mt-2">Get Your Free Account Now !</h3>
           </div>
           <div className="form-control">
             <label className="label">
@@ -150,9 +133,9 @@ const JoinHr = () => {
               id="packages"
               value={selectedValue}
               onChange={(e) => setSelectedValue(e.target.value)}
-              className="select select-bordered w-full max-w-xs"
+              className="select select-bordered w-full max-w-sm"
             >
-              <option disabled selected>
+              <option disabled value="">
                 Select a package?
               </option>
               <option value="member5">5 Members for $5</option>

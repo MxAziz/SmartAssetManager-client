@@ -32,7 +32,7 @@ const Banner = () => {
               Join as HR Manager
             </h2>
             <Link
-              to="/join-hr"
+              to="/joinHr"
               className="btn px-6 font-bold text-lg bg-[#4d2745] text-white hover:bg-transparent"
             >
               Join Now
@@ -52,7 +52,7 @@ const Banner = () => {
               Join as Employee
             </h2>
             <Link
-              to="/join-employee"
+              to="/joinEmployee"
               className="btn px-6 font-bold text-lg bg-[#4d2745] text-white hover:bg-transparent"
             >
               Join Now

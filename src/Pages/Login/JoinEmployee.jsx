@@ -17,6 +17,7 @@ const JoinEmployee = () => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
+    const photo = e.target.photo.value;
     const password = e.target.password.value;
     const birth = e.target.dob.value;
     // console.log(name, email, password, birth);
@@ -36,7 +37,9 @@ const JoinEmployee = () => {
         // update user profile
         const profile = {
           name: name,
+          photo: photo,
           email: email,
+          role: "employee",
         };
         updateUserProfile(name, photo)
           .then(() => {
@@ -113,6 +116,18 @@ const JoinEmployee = () => {
               type="text"
               name="name"
               placeholder="Full Name"
+              className="input input-bordered "
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Your PhotoURL</span>
+            </label>
+            <input
+              type="text"
+              name="photo"
+              placeholder="Your PhotoURL"
               className="input input-bordered "
               required
             />
