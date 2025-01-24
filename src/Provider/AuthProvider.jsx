@@ -38,28 +38,41 @@ const AuthProvider = ({children}) => {
     });
   };
 
+  // useEffect(() => {
+  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //     if (currentUser) {
+  //       //    get token and store client side.
+  //       const userInfo = { email: currentUser.email };
+  //       axiosPublic.post("/jwt", userInfo).then((res) => {
+  //         //    console.log(res);
+  //         if (res.data.token) {
+  //           localStorage.setItem("access-token", res.data.token);
+  //         }
+  //       });
+  //     } else {
+  //       //  TODO: remove token(if token stored in the client side: local storage,  chasing, in memory)
+  //       localStorage.removeItem("access-token");
+  //     }
+  //     setLoading(false);
+  //   });
+  //   return () => {
+  //     unSubscribe();
+  //   };
+  // }, [axiosPublic]);
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // console.log("current user:", currentUser);
       setUser(currentUser);
-      if (currentUser) {
-        //    get token and store client side.
-        const userInfo = { email: currentUser.email };
-        axiosPublic.post("/jwt", userInfo).then((res) => {
-          //    console.log(res);
-          if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
-          }
-        });
-      } else {
-        //  TODO: remove token(if token stored in the client side: local storage,  chasing, in memory)
-        localStorage.removeItem("access-token");
-      }
       setLoading(false);
     });
     return () => {
       unSubscribe();
     };
-  }, [axiosPublic]);
+  }, []);
+
+  console.log(user);
 
 
 

@@ -3,9 +3,11 @@ import useAuth from "./../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const JoinEmployee = () => {
-  const { signInWithGoogle, createUser } = useAuth();
+  const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
 
   const [error, setError] = useState("");
 
@@ -20,7 +22,7 @@ const JoinEmployee = () => {
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     const birth = e.target.dob.value;
-    // console.log(name, email, password, birth);
+    // console.log(name, email, password,photo, birth);
 
     // password validation
     if (!passwordReg.test(password)) {
@@ -47,13 +49,6 @@ const JoinEmployee = () => {
               if (res.data.insertedId) {
                 e.target.reset();
                 console.log("user added to the database");
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "User created successfully.",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
                 navigate("/");
               }
             });

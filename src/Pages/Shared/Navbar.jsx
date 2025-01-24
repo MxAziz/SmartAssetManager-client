@@ -1,11 +1,12 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 // import { toast } from "react-toastify";
 // import { FaCartArrowDown } from "react-icons/fa6";
 
-
 const Navbar = () => {
-  // const { user, signOutUser } = useAuth();
+  const { user, signOutUser } = useAuth();
   const navigate = useNavigate();
+
 
   // const handleLogOut = () => {
   //   signOutUser()
@@ -23,22 +24,158 @@ const Navbar = () => {
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li>
-        <NavLink to={"/joinEmployee"}>Join as Employee</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/joinHr"}>Join as HR Manager</NavLink>
-      </li>
-      <li>
-        <NavLink
-          className="btn btn-sm px-6 btn-outline text-white hover:bg-[#4d2745]"
-          to={"/login"}
-        >
-          Login
-        </NavLink>
-      </li>
+      {user ? (
+        <>
+          {user?.role === "employee" && (
+            <>
+              <li>
+                <Link to="/my-assets" className="hover:underline">
+                  My Assets
+                </Link>
+              </li>
+              <li>
+                <Link to="/my-team" className="hover:underline">
+                  My Team
+                </Link>
+              </li>
+              <li>
+                <Link to="/request-asset" className="hover:underline">
+                  Request for an Asset
+                </Link>
+              </li>
+            </>
+          )}
+
+          {user.role === "hr" && (
+            <>
+              <li>
+                <NavLink to={"/assetList"}>Asset List</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/addAsset"}> Add an Asset</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/joinEmployee"}>All Request </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/myEmployee"}>My Employee List </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/addEmployee"}>Add an Employee </NavLink>
+              </li>
+            </>
+          )}
+          <li>
+            <NavLink to={"/profile"}>Profile</NavLink>
+          </li>
+          <li>
+            <div className="dropdown dropdown-bottom dropdown-end">
+              <div tabIndex={0} role="button" className=" m-1">
+                Click
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-gray-900 rounded-box z-[1] w-52 p-2 shadow"
+              >
+                <li>
+                  <a>Item 1</a>
+                </li>
+                <li>
+                  <a>Item 2</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to={"/joinEmployee"}>Join as Employee</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/joinHr"}>Join as HR Manager</NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="btn btn-sm px-6 btn-outline text-white hover:bg-[#4d2745]"
+              to={"/login"}
+            >
+              Login
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
+
+  // navbar links
+  // const links = (
+  //   <>
+  //     <li>
+  //       <NavLink to={"/"}>Home</NavLink>
+  //     </li>
+  //     {user ? (
+  //       <>
+  //         {user.role === "employee" && (
+  //           <>
+  //             <li>
+  //               <Link to="/my-assets" className="hover:underline">
+  //                 My Assets
+  //               </Link>
+  //             </li>
+  //             <li>
+  //               <Link to="/my-team" className="hover:underline">
+  //                 My Team
+  //               </Link>
+  //             </li>
+  //             <li>
+  //               <Link to="/request-asset" className="hover:underline">
+  //                 Request for an Asset
+  //               </Link>
+  //             </li>
+  //           </>
+  //         )}
+
+  //         {user.role === "hr" && (
+  //           <>
+  //             <li>
+  //               <NavLink to={"/assetList"}>Asset List</NavLink>
+  //             </li>
+  //             <li>
+  //               <NavLink to={"/addAsset"}> Add an Asset</NavLink>
+  //             </li>
+  //             <li>
+  //               <NavLink to={"/joinEmployee"}>All Request </NavLink>
+  //             </li>
+  //             <li>
+  //               <NavLink to={"/myEmployee"}>My Employee List </NavLink>
+  //             </li>
+  //             <li>
+  //               <NavLink to={"/addEmployee"}>Add an Employee </NavLink>
+  //             </li>
+  //           </>
+  //         )}
+  //       </>
+  //     ) : (
+  //       <>
+  //         <li>
+  //           <NavLink to={"/joinEmployee"}>Join as Employee</NavLink>
+  //         </li>
+  //         <li>
+  //           <NavLink to={"/joinHr"}>Join as HR Manager</NavLink>
+  //         </li>
+  //         <li>
+  //           <NavLink
+  //             className="btn btn-sm px-6 btn-outline text-white hover:bg-[#4d2745]"
+  //             to={"/login"}
+  //           >
+  //             Login
+  //           </NavLink>
+  //         </li>
+  //       </>
+  //     )}
+  //   </>
+  // );
 
   return (
     <div>
