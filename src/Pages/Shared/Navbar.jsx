@@ -1,12 +1,23 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 // import { toast } from "react-toastify";
 // import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, signOutUser } = useAuth();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
+  const { data, isPending } = useQuery({
+    queryKey: [user?.email, "role"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`)
+      return res.data;
+    }
+  })
+  console.log(data.email);
 
   // const handleLogOut = () => {
   //   signOutUser()
