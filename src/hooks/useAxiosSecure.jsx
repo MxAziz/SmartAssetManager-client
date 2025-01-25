@@ -7,8 +7,8 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const navigate = useNavigate();
-  const { signOutUser, user } = useAuth();
+  // const navigate = useNavigate();
+  // const { signOutUser, user } = useAuth();
 
   // request interceptor to add authorization header for every secure call to the api
 //   axiosSecure.interceptors.request.use(

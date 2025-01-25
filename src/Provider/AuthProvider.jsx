@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import auth from './../firebase/firebase.config';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
 
@@ -28,6 +28,7 @@ const AuthProvider = ({children}) => {
     };
     const signOutUser = () => {
       setLoading(true);
+      setUser(null);
       return signOut(auth);
   };
 
@@ -63,7 +64,7 @@ const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log("current user:", currentUser);
+      console.log("current user:", currentUser);
       setUser(currentUser);
       setLoading(false);
     });
@@ -71,9 +72,6 @@ const AuthProvider = ({children}) => {
       unSubscribe();
     };
   }, []);
-
-  console.log(user);
-
 
 
     const authInfo = {

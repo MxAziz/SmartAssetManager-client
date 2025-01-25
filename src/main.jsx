@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-  import { ToastContainer, toast } from "react-toastify";
+  import { ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
 import './index.css'
 import './App.css'
@@ -13,8 +13,8 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
       <QueryClientProvider client={queryClient}>
+    <AuthProvider>
         <div className="max-w-screen-xl mx-auto">
           <RouterProvider router={router} />
           <ToastContainer
@@ -30,7 +30,7 @@ createRoot(document.getElementById("root")).render(
             theme="colored"
           />
         </div>
-      </QueryClientProvider>
     </AuthProvider>
+      </QueryClientProvider>
   </StrictMode>
 );

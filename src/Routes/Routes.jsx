@@ -5,6 +5,10 @@ import ErrorPage from "../Components/ErrorPage";
 import Login from "../Pages/Login/Login";
 import JoinEmployee from "../Pages/Login/JoinEmployee";
 import JoinHr from "../Pages/Login/JoinHr";
+import PrivateRoute from "./PrivateRoute";
+import MyAsset from "../Pages/Employee/MyAsset";
+import MyTeam from "../Pages/Employee/MyTeam";
+import RequestAsset from "../Pages/Employee/RequestAsset";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +27,30 @@ export const router = createBrowserRouter([
       {
         path: "/joinEmployee",
         element: <JoinEmployee></JoinEmployee>,
+      },
+      {
+        path: "/myAssets",
+        element: (
+          <PrivateRoute>
+            <MyAsset></MyAsset>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myTeam",
+        element: (
+          <PrivateRoute>
+            <MyTeam></MyTeam>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/requestAsset",
+        element: (
+          <PrivateRoute>
+            <RequestAsset></RequestAsset>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/joinHr",

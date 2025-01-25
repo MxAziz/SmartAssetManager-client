@@ -1,34 +1,79 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 // import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
-  const { user, signOutUser } = useAuth();
+  const { user, signOutUser, loading } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
+  const [userInfo, setUserInfo] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const { data, isPending } = useQuery({
-    queryKey: [user?.email, "role"],
+
+
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["users"],
+    enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/${user.email}`)
+      const res = await axiosSecure.get(`/users/${user?.email}`);
       return res.data;
-    }
-  })
-  console.log(data.email);
+    },
+  });
 
-  // const handleLogOut = () => {
-  //   signOutUser()
-  //     .then(() => {
-  //       navigate("/");
-  //       toast.success("Sign out successful");
-  //     })
-  //     .catch((error) => {
-  //       console.log("ERROR:", error);
-  //     });
-  // };
+  if (isLoading) return (
+    <div>
+      <span className="loading loading-bars loading-lg"></span>
+    </div>
+  );
+  if (isError) return <div>Error: {error.message}</div>;
+
+
+// useEffect(() => {
+//   if (user?.email) {
+//     fetch(`http://localhost:5000/users/${user.email}`)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         setUserInfo(data);
+//         setIsLoading(false);
+//       })
+//       .catch((error) => {
+//         console.error("Error fetching user info:", error);
+//         setIsLoading(false);
+//       });
+//   } else {
+//     setIsLoading(false);
+//   }
+// }, [user?.email]);
+
+if (isLoading) {
+  return <span className="loading loading-bars loading-lg"></span>;
+  }
+
+  // if (!user && !isLoading) {
+  //   return <Navigate to="/login" replace />;
+  // }
+
+
+
+  console.log('aziz userInfo :',userInfo);
+
+
+  const handleLogOut = () => {
+    signOutUser()
+      .then(() => {
+        navigate("/");
+        toast.success("Sign out successful");
+      })
+      .catch((error) => {
+        console.log("ERROR:", error);
+      });
+  };
+
+
   // navbar links
   const links = (
     <>
@@ -37,27 +82,27 @@ const Navbar = () => {
       </li>
       {user ? (
         <>
-          {user?.role === "employee" && (
+          {data?.role === "employee" && (
             <>
               <li>
-                <Link to="/my-assets" className="hover:underline">
+                <NavLink to="/myAssets" className="hover:underline">
                   My Assets
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/my-team" className="hover:underline">
+                <NavLink to="/myTeam" className="hover:underline">
                   My Team
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/request-asset" className="hover:underline">
+                <Link to="/requestAsset" className="hover:underline">
                   Request for an Asset
                 </Link>
               </li>
             </>
           )}
 
-          {user.role === "hr" && (
+          {data.role === "hr" && (
             <>
               <li>
                 <NavLink to={"/assetList"}>Asset List</NavLink>
@@ -80,20 +125,25 @@ const Navbar = () => {
             <NavLink to={"/profile"}>Profile</NavLink>
           </li>
           <li>
+            <button onClick={handleLogOut}>Logout</button>
+          </li>
+          <li>
             <div className="dropdown dropdown-bottom dropdown-end">
-              <div tabIndex={0} role="button" className=" m-1">
-                Click
+              <div tabIndex={0} role="text" className=" m-1">
+                <img
+                  className="size-10 rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
               </div>
               <ul
                 tabIndex={0}
                 className="dropdown-content menu bg-gray-900 rounded-box z-[1] w-52 p-2 shadow"
               >
                 <li>
-                  <a>Item 1</a>
+                  <a>{user.email} </a>
                 </li>
-                <li>
-                  <a>Item 2</a>
-                </li>
+                <li>{/* <button onClick={handleLogOut}>Logout</button> */}</li>
               </ul>
             </div>
           </li>
