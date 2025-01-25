@@ -82,7 +82,7 @@ if (isLoading) {
       </li>
       {user ? (
         <>
-          {data?.role === "employee" && (
+          {data?.role === "hr" && (
             <>
               <li>
                 <NavLink to="/myAssets" className="hover:underline">
@@ -102,7 +102,7 @@ if (isLoading) {
             </>
           )}
 
-          {data.role === "hr" && (
+          {data.role === "employee" && (
             <>
               <li>
                 <NavLink to={"/assetList"}>Asset List</NavLink>
@@ -111,7 +111,7 @@ if (isLoading) {
                 <NavLink to={"/addAsset"}> Add an Asset</NavLink>
               </li>
               <li>
-                <NavLink to={"/joinEmployee"}>All Request </NavLink>
+                <NavLink to={"/allRequest"}>All Request </NavLink>
               </li>
               <li>
                 <NavLink to={"/myEmployee"}>My Employee List </NavLink>
@@ -123,9 +123,6 @@ if (isLoading) {
           )}
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
-          </li>
-          <li>
-            <button onClick={handleLogOut}>Logout</button>
           </li>
           <li>
             <div className="dropdown dropdown-bottom dropdown-end">
@@ -143,7 +140,7 @@ if (isLoading) {
                 <li>
                   <a>{user.email} </a>
                 </li>
-                <li>{/* <button onClick={handleLogOut}>Logout</button> */}</li>
+                <li><button onClick={handleLogOut}>Logout</button></li>
               </ul>
             </div>
           </li>
@@ -169,74 +166,6 @@ if (isLoading) {
     </>
   );
 
-  // navbar links
-  // const links = (
-  //   <>
-  //     <li>
-  //       <NavLink to={"/"}>Home</NavLink>
-  //     </li>
-  //     {user ? (
-  //       <>
-  //         {user.role === "employee" && (
-  //           <>
-  //             <li>
-  //               <Link to="/my-assets" className="hover:underline">
-  //                 My Assets
-  //               </Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/my-team" className="hover:underline">
-  //                 My Team
-  //               </Link>
-  //             </li>
-  //             <li>
-  //               <Link to="/request-asset" className="hover:underline">
-  //                 Request for an Asset
-  //               </Link>
-  //             </li>
-  //           </>
-  //         )}
-
-  //         {user.role === "hr" && (
-  //           <>
-  //             <li>
-  //               <NavLink to={"/assetList"}>Asset List</NavLink>
-  //             </li>
-  //             <li>
-  //               <NavLink to={"/addAsset"}> Add an Asset</NavLink>
-  //             </li>
-  //             <li>
-  //               <NavLink to={"/joinEmployee"}>All Request </NavLink>
-  //             </li>
-  //             <li>
-  //               <NavLink to={"/myEmployee"}>My Employee List </NavLink>
-  //             </li>
-  //             <li>
-  //               <NavLink to={"/addEmployee"}>Add an Employee </NavLink>
-  //             </li>
-  //           </>
-  //         )}
-  //       </>
-  //     ) : (
-  //       <>
-  //         <li>
-  //           <NavLink to={"/joinEmployee"}>Join as Employee</NavLink>
-  //         </li>
-  //         <li>
-  //           <NavLink to={"/joinHr"}>Join as HR Manager</NavLink>
-  //         </li>
-  //         <li>
-  //           <NavLink
-  //             className="btn btn-sm px-6 btn-outline text-white hover:bg-[#4d2745]"
-  //             to={"/login"}
-  //           >
-  //             Login
-  //           </NavLink>
-  //         </li>
-  //       </>
-  //     )}
-  //   </>
-  // );
 
   return (
     <div>
@@ -281,8 +210,8 @@ if (isLoading) {
             </span>
           </a>
         </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-sm font-bold">
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-sm font-bold flex justify-center items-center">
             {links}
           </ul>
         </div>

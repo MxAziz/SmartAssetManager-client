@@ -9,6 +9,12 @@ import PrivateRoute from "./PrivateRoute";
 import MyAsset from "../Pages/Employee/MyAsset";
 import MyTeam from "../Pages/Employee/MyTeam";
 import RequestAsset from "../Pages/Employee/RequestAsset";
+import AssetList from './../Pages/HrManager/AssetList';
+import AddAsset from './../Pages/HrManager/AddAsset';
+import AllRequest from './../Pages/HrManager/AllRequest';
+import MyEmployee from './../Pages/HrManager/MyEmployee';
+import AddEmployee from './../Pages/HrManager/AddEmployee';
+import Profile from "../Pages/Common/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/profile",
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
       },
       {
         path: "/joinEmployee",
@@ -55,6 +65,46 @@ export const router = createBrowserRouter([
       {
         path: "/joinHr",
         element: <JoinHr></JoinHr>,
+      },
+      {
+        path: "/assetList",
+        element: (
+          <PrivateRoute>
+            <AssetList></AssetList>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addAsset",
+        element: (
+          <PrivateRoute>
+            <AddAsset></AddAsset>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/allRequest",
+        element: (
+          <PrivateRoute>
+            <AllRequest></AllRequest>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myEmployee",
+        element: (
+          <PrivateRoute>
+            <MyEmployee></MyEmployee>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addEmployee",
+        element: (
+          <PrivateRoute>
+            <AddEmployee></AddEmployee>
+          </PrivateRoute>
+        ),
       },
     ],
   },
