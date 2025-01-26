@@ -59,7 +59,7 @@ if (isLoading) {
 
 
 
-  console.log('aziz userInfo :',userInfo);
+  console.log('aziz userInfo :',data);
 
 
   const handleLogOut = () => {
@@ -82,7 +82,7 @@ if (isLoading) {
       </li>
       {user ? (
         <>
-          {data?.role === "hr" && (
+          {data?.role === "employee" && (
             <>
               <li>
                 <NavLink to="/myAssets" className="hover:underline">
@@ -102,7 +102,7 @@ if (isLoading) {
             </>
           )}
 
-          {data.role === "employee" && (
+          {data.role === "hr" && (
             <>
               <li>
                 <NavLink to={"/assetList"}>Asset List</NavLink>

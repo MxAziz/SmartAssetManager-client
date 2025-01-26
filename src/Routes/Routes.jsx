@@ -15,6 +15,7 @@ import AllRequest from './../Pages/HrManager/AllRequest';
 import MyEmployee from './../Pages/HrManager/MyEmployee';
 import AddEmployee from './../Pages/HrManager/AddEmployee';
 import Profile from "../Pages/Common/Profile";
+import Payment from "../Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
       },
       {
         path: "/profile",

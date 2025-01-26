@@ -4,11 +4,14 @@ import { GiArchiveRegister } from 'react-icons/gi';
 import useAuth from '../../hooks/useAuth';
 import { Helmet } from 'react-helmet';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Login = () => {
     const { signInUser, signInWithGoogle } = useAuth();
     const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
+  const axiosPublic = useAxiosPublic();
 
     const from = location.state?.from?.pathname || "/";
 
@@ -18,7 +21,7 @@ const Login = () => {
       const form = e.target;
       const email = form.email.value;
       const password = form.password.value;
-      console.log(email, password);
+      // console.log(email, password);
 
       signInUser(email, password)
         .then((result) => {
@@ -39,6 +42,8 @@ const Login = () => {
         const userInfo = {
           email: result.user?.email,
           name: result.user?.displayName,
+          photo: result.user?.photoURL,
+          role: "employee",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
           console.log(res.data);
