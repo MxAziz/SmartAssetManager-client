@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { BiSolidUserAccount } from 'react-icons/bi';
-import { FcGoogle } from 'react-icons/fc';
 
 const JoinHr = () => {
 
   const [selectedValue, setSelectedValue] = useState("");
+
+  const packages = [
+    { id: 1, name: "5 Members", price: 5 },
+    { id: 2, name: "10 Members", price: 8 },
+    { id: 3, name: "20 Members", price: 15 },
+  ];
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -16,7 +20,7 @@ const JoinHr = () => {
       email: form.email.value,
       pass: form.password.value,
       dob: form.dob.value,
-      package: selectedValue,
+      package: form.packageId.value,
       companyName: form.companyName.value,
       companyLogo: form.companyLogo.value,
     };
@@ -34,8 +38,6 @@ const JoinHr = () => {
         <img
           className=" h-full w-[490px] shadow-2xl rounded-l-lg rounded-br-lg"
           src="https://i.pinimg.com/736x/4d/32/95/4d32957d2fc2d92c6893e2cfef3b7bf8.jpg"
-          // src="https://i.pinimg.com/736x/60/bc/1c/60bc1cd87b84b06905e2402d15c50c0b.jpg"
-          alt=""
         />
       </figure>
       {/* login form */}
@@ -131,6 +133,7 @@ const JoinHr = () => {
             </label>
             <select
               id="packages"
+              name="packageId"
               value={selectedValue}
               onChange={(e) => setSelectedValue(e.target.value)}
               className="select select-bordered w-full max-w-sm"
@@ -138,9 +141,14 @@ const JoinHr = () => {
               <option disabled value="">
                 Select a package?
               </option>
-              <option value="member5">5 Members for $5</option>
+              {packages.map((pkg) => (
+                <option key={pkg.id} value={pkg.id}>
+                  {pkg.name} - ${pkg.price}
+                </option>
+              ))}
+              {/* <option value="member5">5 Members for $5</option>
               <option value="member10">10 Members for $8</option>
-              <option value="member20">20 Members for $15</option>
+              <option value="member20">20 Members for $15</option> */}
             </select>
           </div>
           <div className="form-control mt-6">

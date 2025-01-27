@@ -3,15 +3,11 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
-// import { FaCartArrowDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useAuth();
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
-  const [userInfo, setUserInfo] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
 
 
 
@@ -31,33 +27,9 @@ const Navbar = () => {
   );
   if (isError) return <div>Error: {error.message}</div>;
 
-
-// useEffect(() => {
-//   if (user?.email) {
-//     fetch(`http://localhost:5000/users/${user.email}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         setUserInfo(data);
-//         setIsLoading(false);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching user info:", error);
-//         setIsLoading(false);
-//       });
-//   } else {
-//     setIsLoading(false);
-//   }
-// }, [user?.email]);
-
-if (isLoading) {
+if (loading) {
   return <span className="loading loading-bars loading-lg"></span>;
   }
-
-  // if (!user && !isLoading) {
-  //   return <Navigate to="/login" replace />;
-  // }
-
-
 
   console.log('aziz userInfo :',data);
 

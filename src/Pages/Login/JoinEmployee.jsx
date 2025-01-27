@@ -4,10 +4,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const JoinEmployee = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
@@ -24,6 +26,15 @@ const JoinEmployee = () => {
     const birth = e.target.dob.value;
     // console.log(name, email, password,photo, birth);
 
+    // update user profile
+    const profile = {
+      name: name,
+      photo: photo,
+      email: email,
+      birth:birth,
+      role: "employee",
+    };
+
     // password validation
     if (!passwordReg.test(password)) {
       toast.error(
@@ -36,19 +47,12 @@ const JoinEmployee = () => {
       .then((result) => {
         // console.log(result.user);
 
-        // update user profile
-        const profile = {
-          name: name,
-          photo: photo,
-          email: email,
-          role: "employee",
-        };
         updateUserProfile(name, photo)
           .then(() => {
             axiosPublic.post("/users", profile).then((res) => {
               if (res.data.insertedId) {
                 e.target.reset();
-                console.log("user added to the database");
+                toast.success("user added to the database");
                 navigate("/");
               }
             });
@@ -58,21 +62,52 @@ const JoinEmployee = () => {
       .catch((error) => {
         toast.error(error.message);
       });
-
   };
 
   // google signIn method
+  // const handleGoogleSignIn = () => {
+  //   signInWithGoogle()
+  //     .then((result) => {
+  //       console.log(result.user);
+  //       navigate("/");
+  //       toast.success("Sign up with Google is successful");
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error.message);
+  //     });
+  // };
+
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
-        navigate("/");
-        toast.success("Sign up with Google is successful");
+        const { displayName, email, photoURL } = result.user;
+
+        // User data to save in MongoDB
+        const userData = {
+          name: displayName,
+          email,
+          photo: photoURL,
+          role: "employee",
+        };
+
+        // Send user data to server
+        axiosPublic.post("/users", userData).then((res) => {
+          if (res.data.insertedId) {
+            toast.success(
+              "Sign up with Google is successful and user is saved!"
+            );
+            navigate("/");
+          } else {
+            toast.info("Sign up with Google is successful and user info is not saved!");
+            navigate('/')
+          }
+        });
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
+
 
   return (
     <div className="mt-[70px] mb-16 w-2/3 mx-auto flex flex-row-reverse">
