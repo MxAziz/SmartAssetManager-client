@@ -16,6 +16,7 @@ import MyEmployee from './../Pages/HrManager/MyEmployee';
 import AddEmployee from './../Pages/HrManager/AddEmployee';
 import Profile from "../Pages/Common/Profile";
 import Payment from "../Pages/Payment/Payment";
+import UpdateUser from "../Pages/Common/UpdateUser";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+      },
+      {
+        path: "/updateProfile",
+        element: <PrivateRoute><UpdateUser></UpdateUser></PrivateRoute>,
       },
       {
         path: "/joinEmployee",

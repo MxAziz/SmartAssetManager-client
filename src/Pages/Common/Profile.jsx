@@ -6,9 +6,9 @@ const Profile = () => {
     const { user, loading } = useAuth();
     console.log(user);
     return (
-      <div className="mt-[100px] mb-10">
+      <div className="mt-[110px] mb-10">
         <div className="card bg-base-100 w-96 mx-auto shadow-xl">
-          <div className=" min-h-[170px] bg-[#682254] rounded-t-xl text-white ">
+          <div className=" min-h-[170px] bg-[#874173] rounded-t-xl text-white ">
             <p className="font-semibold text-xl text-center mt-8">
               Welcome back to your profile
             </p>
@@ -23,8 +23,8 @@ const Profile = () => {
             <p className=" font-semibold">{user.email}</p>
             <div className="card-actions justify-center mt-1">
               <NavLink
-                to={"/"}
-                className="btn btn-wide bg-[#682254] hover:bg-[#8c2870] text-white"
+                to={"/updateProfile"}
+                className="btn btn-wide bg-[#813c6e] hover:bg-[#150510] text-white"
               >
                 Update Profile
               </NavLink>
