@@ -96,7 +96,10 @@ if (loading) {
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
           </li>
-          <li>
+          <li className="md:hidden">
+            <button onClick={handleLogOut}>Logout</button>
+          </li>
+          <li className="hidden md:block">
             <div className="dropdown dropdown-bottom dropdown-end">
               <div tabIndex={0} role="text" className=" m-1">
                 <img
@@ -112,6 +115,9 @@ if (loading) {
                 tabIndex={0}
                 className="dropdown-content menu bg-gray-900 rounded-box z-[1] w-52 p-2 shadow"
               >
+                <li className=" text-base">
+                  <a>{user?.displayName} </a>
+                </li>
                 <li>
                   <a>{user.email} </a>
                 </li>
