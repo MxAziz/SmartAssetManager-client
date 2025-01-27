@@ -10,7 +10,6 @@ const AssetList = () => {
   const [sortOrder, setSortOrder] = useState("");
   const axiosSecure = useAxiosSecure();
 
-  // Fetching products using TanStack Query
   const {
     data: products = [],
     isLoading,
@@ -131,10 +130,10 @@ const AssetList = () => {
       </div>
 
       {/* List Section */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mt-4">
         <table className="table w-full">
           <thead>
-            <tr>
+            <tr className=" bg-[#4d2745] text-white ">
               <th>Product Name</th>
               <th>Product Type</th>
               <th>Product Quantity</th>

@@ -79,7 +79,9 @@ const AddAsset = () => {
             />
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add an Asset</button>
+            <button className="btn bg-[#4d2745] text-white hover:bg-[#634f73]">
+              Add an Asset
+            </button>
           </div>
         </form>
       </div>
