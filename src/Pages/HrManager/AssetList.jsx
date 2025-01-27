@@ -9,6 +9,7 @@ const AssetList = () => {
   const [filterType, setFilterType] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const axiosSecure = useAxiosSecure();
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const {
     data: products = [],
@@ -22,7 +23,26 @@ const AssetList = () => {
     },
   });
 
-    console.log(products);
+  // Handle update product
+  const handleUpdateSubmit = (e) => {
+    e.preventDefault();
+    const updatedProduct = {
+      productName: e.target.name.value,
+      type: e.target.type.value,
+      productQuantity: parseInt(e.target.quantity.value),
+    };
+
+    axiosSecure
+      .put(`/products/${selectedProduct._id}`, updatedProduct)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          toast.success("Product updated successfully!");
+          refetch(); // Refresh data
+          setSelectedProduct(null); // Close the modal
+        }
+      })
+      .catch((error) => toast.error(error.message));
+  };
 
   // Handle delete product
   const handleDelete = (id) => {
@@ -151,7 +171,7 @@ const AssetList = () => {
                 <td>
                   <button
                     className="btn btn-sm btn-info mr-2"
-                    onClick={() => handleUpdate(product._id)}
+                    onClick={() => setSelectedProduct(product)}
                   >
                     Update
                   </button>
@@ -167,6 +187,66 @@ const AssetList = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Update Modal */}
+      {selectedProduct && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Update Product</h3>
+            <form onSubmit={handleUpdateSubmit} className="space-y-4 mt-4">
+              <div>
+                <label className="label">
+                  <span className="label-text">Product Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  defaultValue={selectedProduct.productName}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Product Type</span>
+                </label>
+                <select
+                  name="type"
+                  defaultValue={selectedProduct.type}
+                  className="select select-bordered w-full"
+                >
+                  <option value="Returnable">Returnable</option>
+                  <option value="Non-returnable">Non-returnable</option>
+                </select>
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Product Quantity</span>
+                </label>
+                <input
+                  type="number"
+                  name="quantity"
+                  defaultValue={selectedProduct.productQuantity}
+                  className="input input-bordered w-full"
+                  required
+                />
+              </div>
+              <div className="modal-action">
+                <button type="submit" className="btn btn-primary">
+                  Save Changes
+                </button>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={() => setSelectedProduct(null)} // Close Modal
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
