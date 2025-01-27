@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const AddAsset = () => {
   const [selectedValue, setSelectedValue] = useState();
@@ -34,6 +35,9 @@ const AddAsset = () => {
 
   return (
     <div className="mt-[120px] mb-8 ">
+      <Helmet>
+        <title>AddAsset - SmartAssetManager</title>
+      </Helmet>
       <div className="card bg-base-100 mx-auto w-full max-w-sm shrink-0 shadow-2xl">
         <form onSubmit={handleSubmit} className="card-body">
           <div className="form-control">

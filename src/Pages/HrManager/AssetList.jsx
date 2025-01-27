@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const AssetList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -95,160 +96,166 @@ const AssetList = () => {
     );
   }
 
-  return (
-    <div className="mt-[120px] mb-8 container w-11/12 mx-auto">
-      <div className="flex justify-between items-center">
-        {/* Search Section */}
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Search by product name..."
-            className="input input-bordered w-full max-w-sm"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+    return (
+      <div className="mt-[120px] mb-8 container w-11/12 mx-auto">
+        <Helmet>
+          <title>AssetList - SmartAssetManager</title>
+        </Helmet>
+        <div className="flex justify-between items-center">
+          {/* Search Section */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Search by product name..."
+              className="input input-bordered w-full max-w-sm"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
-        {/* Filter Section */}
-        <div className="mb-4 flex gap-4">
-          <select
-            className="select select-bordered"
-            value={filterStock}
-            onChange={(e) => setFilterStock(e.target.value)}
-          >
-            <option value="">Filter by stock status</option>
-            <option value="available">Available</option>
-            <option value="out-of-stock">Out of Stock</option>
-          </select>
+          {/* Filter Section */}
+          <div className="mb-4 flex gap-4">
+            <select
+              className="select select-bordered"
+              value={filterStock}
+              onChange={(e) => setFilterStock(e.target.value)}
+            >
+              <option value="">Filter by stock status</option>
+              <option value="available">Available</option>
+              <option value="out-of-stock">Out of Stock</option>
+            </select>
 
-          <select
-            className="select select-bordered"
-            value={filterType}
-            onChange={(e) => setFilterType(e.target.value)}
-          >
-            <option value="">Filter by asset type</option>
-            <option value="Returnable">Returnable</option>
-            <option value="Non-returnable">Non-returnable</option>
-          </select>
-        </div>
+            <select
+              className="select select-bordered"
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+            >
+              <option value="">Filter by asset type</option>
+              <option value="Returnable">Returnable</option>
+              <option value="Non-returnable">Non-returnable</option>
+            </select>
+          </div>
 
-        {/* Sorting Section */}
-        <div className="mb-4">
-          <button
-            className="btn bg-[#4d2745] text-white hover:bg-gray-900 mr-2"
-            onClick={() => setSortOrder("asc")}
-          >
-            Sort by Quantity (Asc)
-          </button>
-          <button
-            className="btn bg-[#4d2745] text-white hover:bg-gray-900"
-            onClick={() => setSortOrder("desc")}
-          >
-            Sort by Quantity (Desc)
-          </button>
-        </div>
-      </div>
-
-      {/* List Section */}
-      <div className="overflow-x-auto mt-4">
-        <table className="table w-full">
-          <thead>
-            <tr className=" bg-[#4d2745] text-white ">
-              <th>Product Name</th>
-              <th>Product Type</th>
-              <th>Product Quantity</th>
-              <th>Date Added</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product._id}>
-                <td>{product.productName}</td>
-                <td>{product.type}</td>
-                <td>{product.productQuantity}</td>
-                <td>{new Date(product.date).toLocaleDateString()}</td>
-                <td>
-                  <button
-                    className="btn btn-sm btn-info mr-2"
-                    onClick={() => setSelectedProduct(product)}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="btn btn-sm btn-error"
-                    onClick={() => handleDelete(product._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {/* Update Modal */}
-      {selectedProduct && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Update Product</h3>
-            <form onSubmit={handleUpdateSubmit} className="space-y-4 mt-4">
-              <div>
-                <label className="label">
-                  <span className="label-text">Product Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  defaultValue={selectedProduct.productName}
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-              <div>
-                <label className="label">
-                  <span className="label-text">Product Type</span>
-                </label>
-                <select
-                  name="type"
-                  defaultValue={selectedProduct.type}
-                  className="select select-bordered w-full"
-                >
-                  <option value="Returnable">Returnable</option>
-                  <option value="Non-returnable">Non-returnable</option>
-                </select>
-              </div>
-              <div>
-                <label className="label">
-                  <span className="label-text">Product Quantity</span>
-                </label>
-                <input
-                  type="number"
-                  name="quantity"
-                  defaultValue={selectedProduct.productQuantity}
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
-              <div className="modal-action">
-                <button type="submit" className="btn btn-primary">
-                  Save Changes
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setSelectedProduct(null)} // Close Modal
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
+          {/* Sorting Section */}
+          <div className="mb-4">
+            <button
+              className="btn bg-[#4d2745] text-white hover:bg-gray-900 mr-2"
+              onClick={() => setSortOrder("asc")}
+            >
+              Sort by Quantity (Asc)
+            </button>
+            <button
+              className="btn bg-[#4d2745] text-white hover:bg-gray-900"
+              onClick={() => setSortOrder("desc")}
+            >
+              Sort by Quantity (Desc)
+            </button>
           </div>
         </div>
-      )}
-    </div>
-  );
+
+        {/* List Section */}
+        <div className="overflow-x-auto mt-4">
+          <table className="table w-full">
+            <thead>
+              <tr className=" bg-[#4d2745] text-white ">
+                <th>Product Name</th>
+                <th>Product Type</th>
+                <th>Product Quantity</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product._id}>
+                  <td>{product.productName}</td>
+                  <td>{product.type}</td>
+                  <td>{product.productQuantity}</td>
+                  <td>{new Date(product.date).toLocaleDateString()}</td>
+                  <td>
+                    <button
+                      className="btn btn-sm btn-info mr-2"
+                      onClick={() => setSelectedProduct(product)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="btn btn-sm btn-error"
+                      onClick={() => handleDelete(product._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Update Modal */}
+        {selectedProduct && (
+          <div className="modal modal-open">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Update Product</h3>
+              <form onSubmit={handleUpdateSubmit} className="space-y-4 mt-4">
+                <div>
+                  <label className="label">
+                    <span className="label-text">Product Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    defaultValue={selectedProduct.productName}
+                    className="input input-bordered w-full"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="label">
+                    <span className="label-text">Product Type</span>
+                  </label>
+                  <select
+                    name="type"
+                    defaultValue={selectedProduct.type}
+                    className="select select-bordered w-full"
+                  >
+                    <option value="Returnable">Returnable</option>
+                    <option value="Non-returnable">Non-returnable</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="label">
+                    <span className="label-text">Product Quantity</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="quantity"
+                    defaultValue={selectedProduct.productQuantity}
+                    className="input input-bordered w-full"
+                    required
+                  />
+                </div>
+                <div className="modal-action">
+                  <button
+                    type="submit"
+                    className="btn bg-[#4d2745] text-white hover:bg-gray-900"
+                  >
+                    Save Changes
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setSelectedProduct(null)} // Close Modal
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+      </div>
+    );
 };
 
 export default AssetList;

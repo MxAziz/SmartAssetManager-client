@@ -96,10 +96,10 @@ if (loading) {
           <li>
             <NavLink to={"/profile"}>Profile</NavLink>
           </li>
-          <li className="md:hidden">
+          <li className="lg:hidden">
             <button onClick={handleLogOut}>Logout</button>
           </li>
-          <li className="hidden md:block">
+          <li className="hidden lg:block">
             <div className="dropdown dropdown-bottom dropdown-end">
               <div tabIndex={0} role="text" className=" m-1">
                 <img
