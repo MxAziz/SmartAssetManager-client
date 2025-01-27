@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import useAuth from "./../../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
@@ -10,8 +9,6 @@ const JoinEmployee = () => {
   const { signInWithGoogle, createUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
-
-  const [error, setError] = useState("");
 
   // Regular expression:
   const passwordReg = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}$/;
@@ -63,19 +60,6 @@ const JoinEmployee = () => {
         toast.error(error.message);
       });
   };
-
-  // google signIn method
-  // const handleGoogleSignIn = () => {
-  //   signInWithGoogle()
-  //     .then((result) => {
-  //       console.log(result.user);
-  //       navigate("/");
-  //       toast.success("Sign up with Google is successful");
-  //     })
-  //     .catch((error) => {
-  //       toast.error(error.message);
-  //     });
-  // };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()

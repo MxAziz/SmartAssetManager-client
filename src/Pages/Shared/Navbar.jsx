@@ -101,7 +101,10 @@ if (loading) {
               <div tabIndex={0} role="text" className=" m-1">
                 <img
                   className="size-10 rounded-full"
-                  src={user.photoURL}
+                  src={
+                    user.photoURL ||
+                    "https://i.pinimg.com/474x/69/78/19/69781905dd57ba144ab71ca4271ab294.jpg"
+                  }
                   alt=""
                 />
               </div>
@@ -112,7 +115,9 @@ if (loading) {
                 <li>
                   <a>{user.email} </a>
                 </li>
-                <li><button onClick={handleLogOut}>Logout</button></li>
+                <li>
+                  <button onClick={handleLogOut}>Logout</button>
+                </li>
               </ul>
             </div>
           </li>
@@ -165,7 +170,9 @@ if (loading) {
               className="menu menu-md dropdown-content bg-gray-900 px-6 py-8 space-y-3 rounded-box z-[1] mt-3 shadow"
             >
               <span className="font-bold">
-                <p className=" text-lg">SmartAssetManager</p>
+                <p className=" text-lg">
+                  {user?.companyName || "SmartAssetManager"}
+                </p>
               </span>
               <div className=" border-t"></div>
               {links}
@@ -175,10 +182,15 @@ if (loading) {
             <span className="font-bold flex gap-2 justify-center items-center">
               <img
                 className="size-10 object-contain mix-blend-color-burn rounded-full"
-                src="https://w7.pngwing.com/pngs/903/804/png-transparent-asset-management-computer-icons-finance-bank-financial-management-blue-text-investment-thumbnail.png"
+                src={
+                  user?.companyLogo ||
+                  "https://w7.pngwing.com/pngs/903/804/png-transparent-asset-management-computer-icons-finance-bank-financial-management-blue-text-investment-thumbnail.png"
+                }
                 alt=""
               />
-              <p className=" text-lg">SmartAssetManager</p>
+              <p className=" text-lg">
+                {user?.companyName || "SmartAssetManager"}
+              </p>
             </span>
           </a>
         </div>
