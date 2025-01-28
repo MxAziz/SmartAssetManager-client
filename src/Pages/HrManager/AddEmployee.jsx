@@ -13,7 +13,7 @@ const AddEmployee = () => {
     packageLimit: 5,
   });
 
-
+  // 🤏 TODO :
   // Fetch users who are not affiliated with any company
   const {
     data: employees = [],
@@ -27,36 +27,37 @@ const AddEmployee = () => {
     },
   });
 
-    console.log(employees);
+  console.log(employees);
 
-//   Mutation to add employee to the team
-//   const addEmployeeMutation = useMutation(
-//     (employeeId) =>
-//       axiosSecure.put(`/add-to-team/${employeeId}`, {
-//         // Optional data for future use
-//       }),
-//     {
-//       onSuccess: () => {
-//         toast.success("Employee added to the team!");
-//         refetch();
-//         setCurrentPackage((prev) => ({
-//           ...prev,
-//           employeeCount: prev.employeeCount + 1,
-//         }));
-//       },
-//       onError: (error) =>
-//         toast.error(error.response.data.message || error.message),
-//     }
-//   );
+  //   Mutation to add employee to the team
+  //   const addEmployeeMutation = useMutation(
+  //     (employeeId) =>
+  //       axiosSecure.put(`/add-to-team/${employeeId}`, {
+  //         // Optional data for future use
+  //       }),
+  //     {
+  //       onSuccess: () => {
+  //         toast.success("Employee added to the team!");
+  //         refetch();
+  //         setCurrentPackage((prev) => ({
+  //           ...prev,
+  //           employeeCount: prev.employeeCount + 1,
+  //         }));
+  //       },
+  //       onError: (error) =>
+  //         toast.error(error.response.data.message || error.message),
+  //     }
+  //   );
 
   // Redirect to Package Upgrade Page
   const handleUpgrade = () => navigate("/upgrade-package");
 
-  if (isLoading) return (
-    <p>
-      <span className="loading loading-bars loading-lg"></span>
-    </p>
-  );
+  if (isLoading)
+    return (
+      <p>
+        <span className="loading loading-bars loading-lg"></span>
+      </p>
+    );
 
   return (
     <div className="mt-20 container mx-auto">
@@ -92,33 +93,37 @@ const AddEmployee = () => {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(employees) ? employees.map((employee) => (
-              <tr key={employee._id}>
-                <td>
-                  <input type="checkbox" className="checkbox" />
-                </td>
-                <td>
-                  <img
-                    src={employee.photo || "/default-profile.png"}
-                    alt={employee.name}
-                    className="w-12 h-12 rounded-full"
-                  />
-                </td>
-                <td>{employee.name}</td>
-                <td>
-                  <button
-                    onClick={() => addEmployeeMutation.mutate(employee._id)}
-                    className="btn btn-sm btn-info"
-                    disabled={
-                      currentPackage.employeeCount >=
-                      currentPackage.packageLimit
-                    }
-                  >
-                    Add to Team
-                  </button>
-                </td>
-              </tr>
-            )): (<p>Loading...</p>)}
+            {Array.isArray(employees) ? (
+              employees.map((employee) => (
+                <tr key={employee._id}>
+                  <td>
+                    <input type="checkbox" className="checkbox" />
+                  </td>
+                  <td>
+                    <img
+                      src={employee.photo || "/default-profile.png"}
+                      alt={employee.name}
+                      className="w-12 h-12 rounded-full"
+                    />
+                  </td>
+                  <td>{employee.name}</td>
+                  <td>
+                    <button
+                      onClick={() => addEmployeeMutation.mutate(employee._id)}
+                      className="btn btn-sm btn-info"
+                      disabled={
+                        currentPackage.employeeCount >=
+                        currentPackage.packageLimit
+                      }
+                    >
+                      Add to Team
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <p>Loading...</p>
+            )}
           </tbody>
         </table>
       </div>
