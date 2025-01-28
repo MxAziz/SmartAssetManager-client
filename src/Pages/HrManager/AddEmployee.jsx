@@ -27,7 +27,6 @@ const AddEmployee = () => {
     },
   });
 
-  console.log(employees);
 
   //   Mutation to add employee to the team
   //   const addEmployeeMutation = useMutation(

@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 const Profile = () => {
     const { user, loading } = useAuth();
-    console.log(user);
     return (
       <div className="mt-[110px] mb-10">
         <div className="card bg-base-100 w-96 mx-auto shadow-xl">

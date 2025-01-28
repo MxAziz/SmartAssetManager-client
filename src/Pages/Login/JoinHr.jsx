@@ -38,7 +38,7 @@ const JoinHr = () => {
       companyLogo: form.companyLogo.value,
       role:"hr",
     };
-    console.log(formData);
+    // console.log(formData);
 
     // password validation
         if (!passwordReg.test(password)) {

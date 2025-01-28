@@ -18,12 +18,12 @@ const UpdateUser = () => {
 
     updateProfile(auth.currentUser, Profile)
       .then(() => {
-        console.log("profile update successful");
+        // console.log("profile update successful");
         navigate("/profile");
         toast.success("Your profile is up to date !");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
 
