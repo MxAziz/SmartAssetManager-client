@@ -67,14 +67,12 @@ const AssetList = () => {
   const filteredProducts = products
     .filter((product) => {
       // Search by name
-      return product.productName
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+      return product?.productName?.toLowerCase().includes(searchTerm.toLowerCase());
     })
     .filter((product) => {
       // Filter by stock status
       if (filterStock === "available") return product.productQuantity > 0;
-      if (filterStock === "out-of-stock") return product.productQuantity === 0;
+      if (filterStock === "out-of-stock") return product.productQuantity <1;
       return true;
     })
     .filter((product) => {

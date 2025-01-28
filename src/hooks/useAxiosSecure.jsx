@@ -4,7 +4,9 @@ import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
   baseURL: "https://sam000.vercel.app",
+  // headers: { Authorization: `Bearer ${token}` },
 });
+
 
 const useAxiosSecure = () => {
   // const navigate = useNavigate();
