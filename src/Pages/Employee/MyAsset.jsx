@@ -14,7 +14,7 @@ const MyAsset = () => {
     } = useQuery({
       queryKey: ["requestAssets"],
       queryFn: async () => {
-        const res = await axiosSecure.get(`/products`);
+        const res = await axiosSecure.get(`/products/${user.email}`);
         return res.data;
       },
     });
@@ -25,7 +25,47 @@ const MyAsset = () => {
 
 
     console.log(requestAssets);
-  return <div></div>;
+  return (
+    <div className="overflow-x-auto mt-[110px] mb-10 w-11/12 mx-auto">
+      <table className="table table-zebra">
+        {/* head */}
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Asset Name</th>
+            <th>Asset Type</th>
+            <th>Request Date</th>
+            <th>Approval Date</th>
+            <th>Request Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* dynamic row */}
+          {requestAssets.map((asset, index) => (
+            <tr key={asset._id}>
+              <th>{index + 1}</th>
+              <td>{asset.assetName}</td>
+              <td>{asset.assetType}</td>
+              <td>{new Date(asset.requestDate).toLocaleDateString()}</td>
+              <td>Blue</td>
+              <td>{asset.requestStatus}</td>
+              <td>
+                {asset.requestStatus === "Pending" && (
+                  <button
+                    className="bg-[#4d2745] text-white px-3 py-2 rounded"
+                    onClick={() => handleCancelRequest(asset._id)}
+                  >
+                    Cancel Request
+                  </button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default MyAsset;

@@ -60,12 +60,14 @@ const filteredAssets = allAssets.filter((asset) => {
     const requestData = {
       assetId: modalData._id,
       assetName: modalData.productName,
+      assetType: modalData.type,
       requestDate: new Date(),
       requestStatus: "Pending",
       employeeName: user.displayName,
       employeeEmail: user.email,
       notes,
     };
+    console.log("Sending Request Data:", requestData);
 
     axiosSecure.post("/requestProducts", requestData)
       .then((res) => {
@@ -79,7 +81,6 @@ const filteredAssets = allAssets.filter((asset) => {
         toast.error("Failed to submit the request. Try again.");
       });
   };
-
   return (
     <div className="container mt-[120px] mb-9 mx-auto">
       <div className="flex justify-between items-center w-11/12 mx-auto">
