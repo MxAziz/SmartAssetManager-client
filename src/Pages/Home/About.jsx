@@ -3,7 +3,7 @@ import { FaRegLightbulb, FaUsers, FaCheckCircle } from "react-icons/fa";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 py-20">
+    <div className="bg-gray-100 dark:bg-gray-800 dark:text-gray-100 py-20">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6 ">About Us</h2>
         <p className="text-lg text-gray-700 mb-8">

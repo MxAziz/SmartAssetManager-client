@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import ThemeToggle from "../../Components/ThemeToggle";
 
 const Navbar = () => {
   const { user, signOutUser, loading } = useAuth();
@@ -183,7 +184,7 @@ if (loading) {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost ">
+          <a className=" bg-transparent text-white border-none ">
             <span className="font-bold flex gap-2 justify-center items-center">
               <img
                 className="size-10 object-contain mix-blend-color-burn rounded-full"
@@ -203,6 +204,9 @@ if (loading) {
           <ul className="menu menu-horizontal px-1 text-sm font-bold flex justify-center items-center">
             {links}
           </ul>
+        </div>
+        <div className="">
+          <ThemeToggle></ThemeToggle>
         </div>
       </div>
     </div>
