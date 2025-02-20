@@ -4,6 +4,7 @@ import About from "./About";
 import Packages from "./Packages";
 import { Helmet } from "react-helmet";
 import Features from "./Features";
+import HowItWorks from "./HowItWorks";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <About></About>
       <Packages></Packages>
       <Features></Features>
+      <HowItWorks></HowItWorks>
     </div>
   );
 };
