@@ -94,18 +94,19 @@ const AssetList = () => {
     );
   }
 
-    return (
-      <div className="mt-[120px] mb-8 container w-11/12 mx-auto">
+  return (
+    <div className="dark:bg-gray-800 dark:text-white">
+      <div className="pt-20 lg:pt-[140px] pb-8 w-11/12 mx-auto">
         <Helmet>
           <title>AssetList - SmartAssetManager</title>
         </Helmet>
-        <div className="flex justify-between items-center">
+        <div className="lg:flex justify-between items-center">
           {/* Search Section */}
           <div className="mb-4">
             <input
               type="text"
               placeholder="Search by product name..."
-              className="input input-bordered w-full max-w-sm"
+              className="input input-bordered w-full max-w-sm dark:bg-gray-600"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -114,7 +115,7 @@ const AssetList = () => {
           {/* Filter Section */}
           <div className="mb-4 flex gap-4">
             <select
-              className="select select-bordered"
+              className="select select-bordered dark:bg-gray-600"
               value={filterStock}
               onChange={(e) => setFilterStock(e.target.value)}
             >
@@ -124,7 +125,7 @@ const AssetList = () => {
             </select>
 
             <select
-              className="select select-bordered"
+              className="select select-bordered dark:bg-gray-600 "
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
             >
@@ -172,7 +173,7 @@ const AssetList = () => {
                   <td>{new Date(product.date).toLocaleDateString()}</td>
                   <td>
                     <button
-                      className="btn btn-sm btn-info mr-2"
+                      className="rounded-md btn-sm bg-[#4d2745] text-white  mr-2"
                       onClick={() => setSelectedProduct(product)}
                     >
                       Update
@@ -253,7 +254,8 @@ const AssetList = () => {
           </div>
         )}
       </div>
-    );
+    </div>
+  );
 };
 
 export default AssetList;
