@@ -82,107 +82,109 @@ const filteredAssets = allAssets.filter((asset) => {
       });
   };
   return (
-    <div className="container mt-[120px] mb-9 mx-auto">
-      <div className="flex justify-between items-center w-11/12 mx-auto">
-        {/* Search */}
-        <div className="mb-4 max-w-xl w-full">
-          <input
-            type="text"
-            placeholder="Search by asset name"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="input input-bordered w-full border border-purple-500"
-          />
+    <div className="dark:bg-gray-800 dark:text-white">
+      <div className="container pt-[140px] pb-10 mx-auto">
+        <div className="flex justify-between items-center w-11/12 mx-auto">
+          {/* Search */}
+          <div className="mb-4 max-w-xl w-full">
+            <input
+              type="text"
+              placeholder="Search by asset name"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="input input-bordered w-full dark:bg-gray-700 border border-purple-500"
+            />
+          </div>
+
+          {/* Filter */}
+          <div className="flex gap-4 mb-6">
+            <select
+              value={selectedFilter.availability}
+              onChange={(e) =>
+                setSelectedFilter({
+                  ...selectedFilter,
+                  availability: e.target.value,
+                })
+              }
+              className="select select-bordered dark:bg-gray-700"
+            >
+              <option value="">Filter by Availability</option>
+              <option value="Available">Available</option>
+              <option value="Out of stock">Out of stock</option>
+            </select>
+            <select
+              value={selectedFilter.type}
+              onChange={(e) =>
+                setSelectedFilter({ ...selectedFilter, type: e.target.value })
+              }
+              className="select select-bordered dark:bg-gray-700"
+            >
+              <option value="">Filter by Type</option>
+              <option value="Returnable">Returnable</option>
+              <option value="Non-returnable">Non-returnable</option>
+            </select>
+          </div>
         </div>
 
-        {/* Filter */}
-        <div className="flex gap-4 mb-6">
-          <select
-            value={selectedFilter.availability}
-            onChange={(e) =>
-              setSelectedFilter({
-                ...selectedFilter,
-                availability: e.target.value,
-              })
-            }
-            className="select select-bordered"
-          >
-            <option value="">Filter by Availability</option>
-            <option value="Available">Available</option>
-            <option value="Out of stock">Out of stock</option>
-          </select>
-          <select
-            value={selectedFilter.type}
-            onChange={(e) =>
-              setSelectedFilter({ ...selectedFilter, type: e.target.value })
-            }
-            className="select select-bordered"
-          >
-            <option value="">Filter by Type</option>
-            <option value="Returnable">Returnable</option>
-            <option value="Non-returnable">Non-returnable</option>
-          </select>
+        {/* Asset List */}
+        <div className="w-11/12 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredAssets.map((asset) => (
+            <div key={asset._id} className="card shadow-lg bg-base-100 dark:bg-gray-700">
+              <div className="card-body">
+                <h2 className="card-title">{asset.productName}</h2>
+                <p>Type: {asset.type}</p>
+                <p>
+                  Availability:{" "}
+                  {asset.productQuantity > 0 ? "Available" : "Out of stock"}
+                </p>
+                <button
+                  onClick={() => setModalData(asset)}
+                  className="btn border-none bg-[#4d2745] text-white hover:bg-gray-900"
+                  disabled={asset.productQuantity < 1}
+                >
+                  Request
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
 
-      {/* Asset List */}
-      <div className="w-11/12 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredAssets.map((asset) => (
-          <div key={asset._id} className="card shadow-lg bg-base-100">
-            <div className="card-body">
-              <h2 className="card-title">{asset.productName}</h2>
-              <p>Type: {asset.type}</p>
-              <p>
-                Availability:{" "}
-                {asset.productQuantity > 0 ? "Available" : "Out of stock"}
-              </p>
-              <button
-                onClick={() => setModalData(asset)}
-                className="btn bg-[#4d2745] text-white hover:bg-gray-900"
-                disabled={asset.productQuantity < 1}
-              >
-                Request
-              </button>
+        {/* Modal Section */}
+        {modalData && (
+          <div className="modal modal-open">
+            <div className="modal-box">
+              <h3 className="font-bold text-lg">Request Asset</h3>
+              <form onSubmit={handleRequest}>
+                <div className="form-control mb-4">
+                  <label className="label">
+                    <span className="label-text">Additional Notes</span>
+                  </label>
+                  <textarea
+                    name="notes"
+                    placeholder="Write additional notes here"
+                    className="textarea textarea-bordered"
+                  ></textarea>
+                </div>
+                <div className="modal-action">
+                  <button
+                    type="submit"
+                    className="btn bg-[#4d2745] text-white hover:bg-[#634f73]"
+                  >
+                    Submit Request
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setModalData(null)}
+                    className="btn btn-secondary"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
-        ))}
+        )}
       </div>
-
-      {/* Modal Section */}
-      {modalData && (
-        <div className="modal modal-open">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Request Asset</h3>
-            <form onSubmit={handleRequest}>
-              <div className="form-control mb-4">
-                <label className="label">
-                  <span className="label-text">Additional Notes</span>
-                </label>
-                <textarea
-                  name="notes"
-                  placeholder="Write additional notes here"
-                  className="textarea textarea-bordered"
-                ></textarea>
-              </div>
-              <div className="modal-action">
-                <button
-                  type="submit"
-                  className="btn bg-[#4d2745] text-white hover:bg-[#634f73]"
-                >
-                  Submit Request
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setModalData(null)}
-                  className="btn btn-secondary"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

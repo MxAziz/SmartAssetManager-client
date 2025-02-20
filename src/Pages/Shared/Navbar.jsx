@@ -152,7 +152,7 @@ if (loading) {
 
   return (
     <div>
-      <div className="navbar max-w-screen-xl mx-auto fixed z-30 bg-opacity-30 bg-black text-white ">
+      <div className="navbar max-w-screen-xl mx-auto fixed z-30 bg-opacity-30 bg-black text-white px-2 lg:px-12 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
