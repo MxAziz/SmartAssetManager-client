@@ -82,7 +82,7 @@ const filteredAssets = allAssets.filter((asset) => {
       });
   };
   return (
-    <div className="dark:bg-gray-800 dark:text-white">
+    <div className="dark:bg-gray-600 dark:text-white">
       <div className="container pt-[140px] pb-10 mx-auto">
         <div className="flex justify-between items-center w-11/12 mx-auto">
           {/* Search */}
@@ -92,7 +92,7 @@ const filteredAssets = allAssets.filter((asset) => {
               placeholder="Search by asset name"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="input input-bordered w-full dark:bg-gray-700 border border-purple-500"
+              className="input input-bordered w-full dark:bg-gray-800 border border-purple-500"
             />
           </div>
 
@@ -106,7 +106,7 @@ const filteredAssets = allAssets.filter((asset) => {
                   availability: e.target.value,
                 })
               }
-              className="select select-bordered dark:bg-gray-700"
+              className="select select-bordered dark:bg-gray-800"
             >
               <option value="">Filter by Availability</option>
               <option value="Available">Available</option>
@@ -117,7 +117,7 @@ const filteredAssets = allAssets.filter((asset) => {
               onChange={(e) =>
                 setSelectedFilter({ ...selectedFilter, type: e.target.value })
               }
-              className="select select-bordered dark:bg-gray-700"
+              className="select select-bordered dark:bg-gray-800"
             >
               <option value="">Filter by Type</option>
               <option value="Returnable">Returnable</option>
@@ -129,7 +129,10 @@ const filteredAssets = allAssets.filter((asset) => {
         {/* Asset List */}
         <div className="w-11/12 mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredAssets.map((asset) => (
-            <div key={asset._id} className="card shadow-lg bg-base-100 dark:bg-gray-700">
+            <div
+              key={asset._id}
+              className="card shadow-lg bg-base-100 dark:bg-gray-800"
+            >
               <div className="card-body">
                 <h2 className="card-title">{asset.productName}</h2>
                 <p>Type: {asset.type}</p>
@@ -151,24 +154,24 @@ const filteredAssets = allAssets.filter((asset) => {
 
         {/* Modal Section */}
         {modalData && (
-          <div className="modal modal-open">
-            <div className="modal-box">
+          <div className="modal modal-open ">
+            <div className="modal-box dark:bg-gray-800 dark:text-white">
               <h3 className="font-bold text-lg">Request Asset</h3>
               <form onSubmit={handleRequest}>
                 <div className="form-control mb-4">
                   <label className="label">
-                    <span className="label-text">Additional Notes</span>
+                    <span className="label-text dark:text-white">Additional Notes</span>
                   </label>
                   <textarea
                     name="notes"
                     placeholder="Write additional notes here"
-                    className="textarea textarea-bordered"
+                    className="textarea textarea-bordered dark:bg-gray-600"
                   ></textarea>
                 </div>
                 <div className="modal-action">
                   <button
                     type="submit"
-                    className="btn bg-[#4d2745] text-white hover:bg-[#634f73]"
+                    className=" px-2 rounded-md bg-[#4d2745] text-white hover:bg-[#634f73]"
                   >
                     Submit Request
                   </button>
