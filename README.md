@@ -3,7 +3,7 @@
 **A subscription-based asset management web application for HR managers and employees.**
 
 ## 🌐 Live Site URL
-[Live Website](https://your-live-site-url.com)
+[Live Website](https://sam000.web.app/)
 
 ---
 
@@ -82,10 +82,10 @@
 ## 📂 Project Structure
 
 ### Client-Side Repository
-[Client Repo Link](https://github.com/your-username/client-repo)
+[Client Repo Link](https://github.com/MxAziz/SmartAssetManager-client)
 
 ### Server-Side Repository
-[Server Repo Link](https://github.com/your-username/server-repo)
+[Server Repo Link](https://github.com/MxAziz/SmartAssetManager-server)
 
 ---
 
@@ -99,8 +99,3 @@
 ### Run this Command
 cd client-repo
 npm install
-
-
-### Instructions:
-1. Replace placeholder values (`your-live-site-url.com`, `your-username`, etc.) with the actual details of your project.
-2. Ensure your `README.md` file is included in both the client and server repositories.
