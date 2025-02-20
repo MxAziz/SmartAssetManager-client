@@ -18,7 +18,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="bg-gray-100 overflow-hidden">
+    <div className="bg-gray-100 overflow-hidden ">
       <Slider {...settings} className="">
         {/* Slider 1 */}
         <div className="relative">
@@ -27,7 +27,7 @@ const Banner = () => {
             alt="HR Manager"
             className="w-full h-[600px] object-cover"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-50">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-50 dark:bg-opacity-60">
             <h2 className="text-4xl text-white font-bold mb-4">
               Join as HR Manager
             </h2>
@@ -47,7 +47,7 @@ const Banner = () => {
             alt="Employee"
             className="w-full h-[600px] object-cover"
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-50">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center bg-black bg-opacity-50 dark:bg-opacity-60">
             <h2 className="text-4xl text-white font-bold mb-4">
               Join as Employee
             </h2>

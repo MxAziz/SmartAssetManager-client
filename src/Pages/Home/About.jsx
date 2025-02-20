@@ -3,10 +3,10 @@ import { FaRegLightbulb, FaUsers, FaCheckCircle } from "react-icons/fa";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 dark:bg-gray-800 dark:text-gray-100 py-20">
+    <div className="bg-gray-100 dark:bg-gray-800  py-20">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-6 ">About Us</h2>
-        <p className="text-lg text-gray-700 mb-8">
+        <h2 className="text-4xl dark:text-white font-bold mb-6 ">About Us</h2>
+        <p className="text-lg text-gray-700 dark:text-gray-100 mb-8">
           Welcome to SmartAssetManager! Our platform helps HR Managers
           efficiently manage assets, monitor employee usage, and simplify
           operations.
@@ -15,7 +15,7 @@ const About = () => {
           {/* card 1 */}
           <div className="p-6  bg-[#AEC4EB] shadow-lg rounded-lg flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
             <FaRegLightbulb className="text-4xl mb-4 text-yellow-300" />
-            <h3 className="text-xl font-bold mb-2">Innovative Solution</h3>
+            <h3 className="text-xl font-bold  mb-2">Innovative Solution</h3>
             <p className="text-gray-600">
               Streamline your asset management with our cutting-edge tools.
             </p>
