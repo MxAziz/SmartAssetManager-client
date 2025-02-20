@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 const Profile = () => {
     const { user, loading } = useAuth();
     return (
-      <div className="mt-[110px] mb-10">
-        <div className="card bg-base-100 w-96 mx-auto shadow-xl">
-          <div className=" min-h-[170px] bg-[#874173] rounded-t-xl text-white ">
+      <div className="pt-[120px] pb-10 dark:bg-gray-800">
+        <div className="card bg-base-100 dark:bg-gray-900 dark:text-white w-96 mx-auto shadow-xl">
+          <div className=" min-h-[170px] bg-gradient-to-l bg-[#874173] from-black rounded-t-xl text-white ">
             <p className="font-semibold text-xl text-center mt-8">
               Welcome back to your profile
             </p>
@@ -23,7 +23,7 @@ const Profile = () => {
             <div className="card-actions justify-center mt-1">
               <NavLink
                 to={"/updateProfile"}
-                className="btn btn-wide bg-[#813c6e] hover:bg-[#150510] text-white"
+                className="py-3 rounded-md btn-wide bg-[#813c6e] hover:bg-[#150510] text-white"
               >
                 Update Profile
               </NavLink>

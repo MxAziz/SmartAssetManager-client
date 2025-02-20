@@ -20,7 +20,7 @@ const Packages = () => {
           {packages.map((pkg) => (
             <div
               key={pkg.id}
-              className="p-6 bg-white dark:bg-gray-600 dark:text-white shadow-lg rounded-lg flex flex-col items-center"
+              className="p-6 bg-white dark:bg-gray-700 dark:text-white shadow-lg rounded-lg flex flex-col items-center"
             >
               <FaHandHoldingDollar className="text-4xl text-[#8c6c58] dark:text-white mb-4" />
               <h3 className="text-xl font-bold mb-2">{pkg.name}</h3>
